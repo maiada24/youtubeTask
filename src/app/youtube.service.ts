@@ -9,7 +9,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class YoutubeService {
 
-  apiKey: string = 'AIzaSyD3lW9RahEZRiq0PA0LlcI7OM2R5MiekH8';
+  apiKey: string = 'AIzaSyCnk-iqewvAvC4806LucKxaWCbyilc_Y8Q'; //'AIzaSyD3lW9RahEZRiq0PA0LlcI7OM2R5MiekH8';
 
   constructor(public http: HttpClient, private firestore: AngularFirestore) { }
 
@@ -28,7 +28,7 @@ export class YoutubeService {
         return res;
       }))
   }
-    
+
   getVideosDuration(videoId): Observable<{}> {
     let url = 'https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=' + videoId + '&key=' + this.apiKey
     return this.http.get(url)
