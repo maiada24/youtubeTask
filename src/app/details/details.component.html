@@ -1,0 +1,42 @@
+<img class="logo" src="../../assets/logo.png" alt="logo" />
+<div *ngIf="videoData != null">
+    <!-- <youtube-player videoId="{{videoId}}"></youtube-player> -->
+    <div class="thumbnail">
+        <img [src]="videoData.thumbnails.medium.url" alt="...">
+    </div>
+
+    <div class="title-section d-flex align-items-center justify-content-between px-5 py-3">
+        <p>{{videoData.title}}</p>
+        <button class="btn btn-danger" (click)="addToFavorite(!isFavorite)">{{isFavorite? 'Remove from favorite' : 'Add to favorite'}}</button>
+    </div>
+    <hr class="m-0">
+    <div class="rate-section d-flex align-items-center justify-content-between px-5 py-3">
+        <div class="rate d-flex align-items-center justify-content-center">
+            <p>Rate Now</p>
+            <ngb-rating class="ml-2" [(rate)]="currentRate" [max]="5" (rateChange)="rateChanged(currentRate)">
+                <ng-template let-fill="fill" let-index="index">
+                    <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                </ng-template>
+            </ngb-rating>
+        </div>
+        <div class="d-flex align-items-center">
+            <p>Duration</p>
+            <span class="ml-2">{{ISO8601toDuration(videoData.duration)}}</span>
+        </div>
+        <div class="d-flex align-items-center">
+            <div>
+                <i class="fa fa-eye" aria-hidden="true"></i>
+                <span class="ml-1">{{videoData.viewCount}}</span>
+            </div>
+            <div class="ml-4">
+                <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                <span class="ml-1">{{videoData.likeCount}}</span>
+            </div>
+        </div>
+    </div>
+    <hr class="m-0">
+    <div class="desc-section px-5 py-3">
+        <p class="mb-3 text-danger">Published on {{videoData.publishedAt | date:"mediumDate"}}</p>
+        <p>{{videoData.description}}</p>
+    </div>
+</div>
