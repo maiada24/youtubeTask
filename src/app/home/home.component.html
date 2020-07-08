@@ -16,7 +16,7 @@
     </form>
 </div>
 
-<ngx-datatable *ngIf="dataLoaded" #myTable class="material" [rows]="videos" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+<ngx-datatable *ngIf="dataLoaded" class="material" [rows]="videos" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
     [rowHeight]="80" [limit]="5" [scrollbarV]="false" [sorts]="[{prop: 'snippet.title', dir: 'desc'}]">
 
     <ngx-datatable-column name="" prop="thumbnails" [width]="100">

@@ -12,7 +12,7 @@ export class DetailsComponent implements OnInit {
   videoId: string;
   videoData: any = null;
   currentRate: number;
-  isFavorite: boolean;
+  isFavorite: boolean = false;
   videos: any;
 
   constructor(private route: ActivatedRoute, private youTubeService: YoutubeService, private firestore: AngularFirestore) { }
@@ -20,15 +20,6 @@ export class DetailsComponent implements OnInit {
   ngOnInit(): void {
     this.videoId = this.route.snapshot.paramMap.get('id');
     this.getVideoDetails(this.videoId);
-    // this.youTubeService.getVideos().subscribe(data => {
-    //   // console.log(data);
-    //   this.videos = data.map(e => {
-    //     return {
-    //       ...e.payload.doc.data()
-    //     };
-    //   })
-    //   console.log(this.videos);
-    // })
     const collection = this.firestore.collection('/videos');
     const doc = collection.doc(this.videoId);
     let self = this;
@@ -73,6 +64,7 @@ export class DetailsComponent implements OnInit {
 
     return H + M + ':' + S;
   }
+  
   getVideoDetails(videoId) {
     this.youTubeService.getVideosDetails(videoId).subscribe(video => {
       this.youTubeService.getVideosLikes(videoId).subscribe(videoStatistics => {

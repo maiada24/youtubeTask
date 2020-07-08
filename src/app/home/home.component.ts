@@ -16,8 +16,7 @@ export class HomeComponent implements OnInit {
   maxResults: number = 15;
   channel: string = "";
   dataLoaded: boolean = false;
-  myGroup: FormGroup
-  @ViewChild('myTable') myFilterTable: HomeComponent;
+  myGroup: FormGroup;
 
   constructor(private youTubeService: YoutubeService, private router: Router) {
     this.myGroup = new FormGroup({
@@ -39,8 +38,8 @@ export class HomeComponent implements OnInit {
   getVideos(channelId, maxResults) {
     this.dataLoaded = false;
     this.videos = [];
-    this.youTubeService.getVideosForChannel(channelId, maxResults).subscribe(lista => {
-      for (let element of lista["items"]) {
+    this.youTubeService.getVideosForChannel(channelId, maxResults).subscribe(videoList => {
+      for (let element of videoList["items"]) {
         this.videos.push(element);
       }
       localStorage.setItem('videos', JSON.stringify(this.videos));

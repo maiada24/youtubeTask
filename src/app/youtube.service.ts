@@ -28,6 +28,7 @@ export class YoutubeService {
         return res;
       }))
   }
+    
   getVideosDuration(videoId): Observable<{}> {
     let url = 'https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=' + videoId + '&key=' + this.apiKey
     return this.http.get(url)
@@ -35,6 +36,7 @@ export class YoutubeService {
         return res;
       }))
   }
+
   getVideosDetails(videoId): Observable<{}> {
     let url = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=' + videoId + '&key=' + this.apiKey
     return this.http.get(url)
@@ -42,8 +44,4 @@ export class YoutubeService {
         return res;
       }))
   }
-
-  // getVideos(): Observable<any> {
-  //   return this.firestore.collection('videos').snapshotChanges();
-  // }
 }
